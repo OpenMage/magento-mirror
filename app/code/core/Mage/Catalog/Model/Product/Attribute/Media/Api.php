@@ -211,7 +211,7 @@ class Mage_Catalog_Model_Product_Attribute_Media_Api extends Mage_Catalog_Model_
             $this->_fault('not_exists');
         }
 
-        if (isset($data['file']['mime']) && isset($data['file']['content'])) {
+        if (is_array($data['file']) && isset($data['file']['mime']) && isset($data['file']['content'])) {
             if (!isset($this->_mimeTypes[$data['file']['mime']])) {
                 $this->_fault('data_invalid', Mage::helper('catalog')->__('Invalid image type.'));
             }
