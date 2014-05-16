@@ -39,5 +39,7 @@ CREATE TABLE {$this->getTable('directory_country_format')} (
     UNIQUE KEY `country_type` (`country_id`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Countries format';
 
-ALTER TABLE {$this->getTable('directory_country')}, DROP COLUMN `address_template_plain`, DROP COLUMN `address_template_html`;
+ALTER TABLE {$this->getTable('directory_country')},
+  DROP COLUMN `address_template_plain`, DROP COLUMN `address_template_html`;
 ");
+$installer->endSetup();

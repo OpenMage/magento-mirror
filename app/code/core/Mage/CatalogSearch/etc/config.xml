@@ -28,7 +28,7 @@
 <config>
     <modules>
         <Mage_CatalogSearch>
-            <version>1.6.0.0</version>
+            <version>1.8.2.0</version>
         </Mage_CatalogSearch>
     </modules>
     <global>

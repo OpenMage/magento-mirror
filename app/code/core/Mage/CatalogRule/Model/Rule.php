@@ -391,7 +391,7 @@ class Mage_CatalogRule_Model_Rule extends Mage_Rule_Model_Abstract
                                 $priceRules ? $priceRules : $price
                             );
                         } else {
-                            $priceRules = $price;
+                            $priceRules = ($priceRules ? $priceRules : $price);
                         }
                         if ($ruleData['action_stop']) {
                             break;
@@ -459,7 +459,7 @@ class Mage_CatalogRule_Model_Rule extends Mage_Rule_Model_Abstract
      *
      * @return string
      */
-    public function toString($format='')
+    public function toString($format = '')
     {
         return '';
     }

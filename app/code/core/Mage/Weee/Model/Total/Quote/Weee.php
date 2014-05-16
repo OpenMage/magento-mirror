@@ -417,7 +417,7 @@ class Mage_Weee_Model_Total_Quote_Weee extends Mage_Tax_Model_Sales_Total_Quote_
             $custTaxClassId,
             $store
         );
-        $defaultRateRequest = $taxCalculationModel->getRateRequest(false, false, false, $store);
+        $defaultRateRequest = $taxCalculationModel->getDefaultRateRequest($store);
 
         $attributes = $this->_helper->getProductWeeeAttributes(
             $item->getProduct(),

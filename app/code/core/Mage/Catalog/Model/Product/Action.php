@@ -80,6 +80,11 @@ class Mage_Catalog_Model_Product_Action extends Mage_Core_Model_Abstract
         Mage::getSingleton('index/indexer')->processEntityAction(
             $this, Mage_Catalog_Model_Product::ENTITY, Mage_Index_Model_Event::TYPE_MASS_ACTION
         );
+
+        Mage::dispatchEvent('catalog_product_attribute_update_after', array(
+            'product_ids'   => $productIds,
+        ));
+
         return $this;
     }
 

@@ -659,6 +659,7 @@ class Mage_Sales_Model_Order_Creditmemo extends Mage_Sales_Model_Abstract
      * Adds comment to credit memo with additional possibility to send it to customer via email
      * and show it in customer account
      *
+     * @param string $comment
      * @param bool $notify
      * @param bool $visibleOnFront
      *

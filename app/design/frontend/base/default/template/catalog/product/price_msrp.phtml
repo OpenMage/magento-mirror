@@ -49,7 +49,7 @@
             <?php if ($this->helper('catalog')->isShowPriceOnGesture($_product)): ?>
                 var newLink = Catalog.Map.addHelpLink(
                         $('<?php echo $helpLinkId ?>'),
-                        "<?php echo $_product->getName() ?>",
+                        "<?php echo $this->escapeHtml($_product->getName()) ?>",
                         <?php echo $this->getRealPriceJs($_product) ?>,
                         '<?php echo $_msrpPrice ?>',
                         "<?php echo $_product->isSalable() ? $_product->getAddToCartUrl() : '' ?>"
@@ -58,7 +58,7 @@
             <?php else: ?>
                 Catalog.Map.addHelpLink(
                         $('<?php echo $helpLinkId ?>'),
-                        null,
+                        "<?php echo $this->escapeHtml($_product->getName()) ?>",
                         null,
                         null,
                         "<?php echo $_product->getProductUrl() ?>"

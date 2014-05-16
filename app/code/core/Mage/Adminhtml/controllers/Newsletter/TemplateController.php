@@ -235,7 +235,7 @@ class Mage_Adminhtml_Newsletter_TemplateController extends Mage_Adminhtml_Contro
         }
 
         // set default value for selected store
-        $data['preview_store_id'] = Mage::app()->getDefaultStoreView()->getId();
+        $data['preview_store_id'] = Mage::app()->getAnyStoreView()->getId();
 
         $this->getLayout()->getBlock('preview_form')->setFormData($data);
         $this->renderLayout();

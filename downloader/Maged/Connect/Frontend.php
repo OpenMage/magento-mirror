@@ -136,11 +136,12 @@ SCRIPT;
     }
 
     /**
-    * Retrieve output cache
-    *
-    * @return array
-    */
-    public function getOutput()
+     * Retrieve output cache
+     *
+     * @param bool $clearPrevious
+     * @return array|mixed
+     */
+    public function getOutput($clearPrevious = false)
     {
         return $this->_out;
     }

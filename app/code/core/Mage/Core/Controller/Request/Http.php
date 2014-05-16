@@ -252,9 +252,13 @@ class Mage_Core_Controller_Request_Http extends Zend_Controller_Request_Http
         return $path;
     }
 
-    public function getBaseUrl()
+    /**
+     * @param bool $raw
+     * @return string
+     */
+    public function getBaseUrl($raw = false)
     {
-        $url = parent::getBaseUrl();
+        $url = parent::getBaseUrl($raw);
         $url = str_replace('\\', '/', $url);
         return $url;
     }

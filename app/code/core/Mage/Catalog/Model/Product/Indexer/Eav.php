@@ -62,6 +62,15 @@ class Mage_Catalog_Model_Product_Indexer_Eav extends Mage_Index_Model_Indexer_Ab
     );
 
     /**
+     * The list of attributes that have an effect on other attributes
+     *
+     * @var array
+     */
+    protected $_dependentAttributes = array(
+        'status'
+    );
+
+    /**
      * Retrieve Indexer name
      *
      * @return string
@@ -141,6 +150,21 @@ class Mage_Catalog_Model_Product_Indexer_Eav extends Mage_Index_Model_Indexer_Ab
     }
 
     /**
+     * Check that attribute has an effects on other attributes
+     *
+     * @param Mage_Catalog_Model_Resource_Eav_Attribute|string $attribute
+     * @return bool
+     */
+    protected function _attributeIsDependent($attribute)
+    {
+        if ($attribute instanceof Mage_Catalog_Model_Resource_Eav_Attribute) {
+            $attribute = $attribute->getAttributeCode();
+        }
+
+        return in_array($attribute, $this->_dependentAttributes);
+    }
+
+    /**
      * Register data required by process in event object
      *
      * @param Mage_Index_Model_Event $event
@@ -154,7 +178,9 @@ class Mage_Catalog_Model_Product_Indexer_Eav extends Mage_Index_Model_Indexer_Ab
         $reindexEav = $product->getForceReindexRequired();
         foreach ($attributes as $attribute) {
             $attributeCode = $attribute->getAttributeCode();
-            if ($this->_attributeIsIndexable($attribute) && $product->dataHasChangedFor($attributeCode)) {
+            if (($this->_attributeIsIndexable($attribute) || $this->_attributeIsDependent($attribute))
+                && $product->dataHasChangedFor($attributeCode)
+            ) {
                 $reindexEav = true;
                 break;
             }
@@ -194,15 +220,20 @@ class Mage_Catalog_Model_Product_Indexer_Eav extends Mage_Index_Model_Indexer_Ab
      */
     protected function _registerCatalogProductMassActionEvent(Mage_Index_Model_Event $event)
     {
-        $reindexEav = false;
-
         /* @var $actionObject Varien_Object */
         $actionObject = $event->getDataObject();
+        $attrData     = $actionObject->getAttributesData();
+        $reindexEav   = false;
+
+        // check if force reindex required
+        if (isset($attrData['force_reindex_required']) && $attrData['force_reindex_required']) {
+            $reindexEav = true;
+        }
+
         // check if attributes changed
-        $attrData = $actionObject->getAttributesData();
         if (is_array($attrData)) {
             foreach (array_keys($attrData) as $attributeCode) {
-                if ($this->_attributeIsIndexable($attributeCode)) {
+                if ($this->_attributeIsIndexable($attributeCode) || $this->_attributeIsDependent($attributeCode)) {
                     $reindexEav = true;
                     break;
                 }

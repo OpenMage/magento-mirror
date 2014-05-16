@@ -26,7 +26,7 @@
 
 /**
  *
- * Speical Start Date attribute backend
+ * Start Date attribute backend
  *
  * @category   Mage
  * @package    Mage_Catalog
@@ -48,10 +48,6 @@ class Mage_Catalog_Model_Product_Attribute_Backend_Startdate extends Mage_Eav_Mo
         if ($startDate === false) {
             return false;
         }
-        if ($startDate == '' && $object->getSpecialPrice()) {
-            $startDate = Mage::app()->getLocale()->date();
-        }
-
         return $startDate;
     }
 
@@ -68,8 +64,6 @@ class Mage_Catalog_Model_Product_Attribute_Backend_Startdate extends Mage_Eav_Mo
         if ($startDate === false) {
             return $this;
         }
-
-        $object->setData($this->getAttribute()->getName(), $startDate);
         parent::beforeSave($object);
         return $this;
     }

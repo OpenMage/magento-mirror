@@ -601,6 +601,7 @@ tr.summary-details-excluded { font-style:italic; }
 /* Paypal */
 .sidebar .paypal-logo { display:block; margin:10px 0; text-align:center; }
 .sidebar .paypal-logo a { float:none; }
+.paypal-express-review .info-set.col2-set { padding-bottom: 15px; }
 /* ======================================================================================= */
 
 

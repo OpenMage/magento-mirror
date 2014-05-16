@@ -48,6 +48,13 @@ class Mage_Tax_Model_Sales_Total_Quote_Shipping extends Mage_Sales_Model_Quote_A
     protected $_config = null;
 
     /**
+     * Tax helper instance
+     *
+     * @var Mage_Tax_Helper_Data|null
+     */
+    protected $_helper = null;
+
+    /**
      * Flag which is initialized when collect method is started and catalog prices include tax.
      * It is used for checking if store tax and customer tax requests are similar
      *
@@ -69,6 +76,7 @@ class Mage_Tax_Model_Sales_Total_Quote_Shipping extends Mage_Sales_Model_Quote_A
     {
         $this->setCode('shipping');
         $this->_calculator  = Mage::getSingleton('tax/calculation');
+        $this->_helper      = Mage::helper('tax');
         $this->_config      = Mage::getSingleton('tax/config');
     }
 
@@ -97,7 +105,12 @@ class Mage_Tax_Model_Sales_Total_Quote_Shipping extends Mage_Sales_Model_Quote_A
 
         $priceIncludesTax = $this->_config->shippingPriceIncludesTax($store);
         if ($priceIncludesTax) {
-            $this->_areTaxRequestsSimilar = $calc->compareRequests($addressTaxRequest, $storeTaxRequest);
+            if ($this->_helper->isCrossBorderTradeEnabled($store)) {
+                $this->_areTaxRequestsSimilar = true;
+            } else {
+                $this->_areTaxRequestsSimilar =
+                        $this->_calculator->compareRequests($storeTaxRequest, $addressTaxRequest);
+            }
         }
 
         $shipping           = $taxShipping = $address->getShippingAmount();

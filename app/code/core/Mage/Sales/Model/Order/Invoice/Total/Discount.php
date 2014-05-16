@@ -74,10 +74,8 @@ class Mage_Sales_Model_Order_Invoice_Total_Discount extends Mage_Sales_Model_Ord
                  * Also the subtotal is without weee
                  */
 
-                $discount = $orderItemDiscount - $orderItem->getDiscountInvoiced()
-                    - $orderItem->getDiscountAppliedForWeeeTax();
-                $baseDiscount = $baseOrderItemDiscount - $orderItem->getBaseDiscountInvoiced()
-                    - $orderItem->getBaseDiscountAppliedForWeeeTax();
+                $discount = $orderItemDiscount - $orderItem->getDiscountInvoiced();
+                $baseDiscount = $baseOrderItemDiscount - $orderItem->getBaseDiscountInvoiced();
 
                 if (!$item->isLast()) {
                     $activeQty = $orderItemQty - $orderItem->getQtyInvoiced();

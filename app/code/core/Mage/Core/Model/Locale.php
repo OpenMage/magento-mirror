@@ -511,12 +511,13 @@ class Mage_Core_Model_Locale
      * @param   mixed $store Information about store
      * @param   string|integer|Zend_Date|array|null $date date in UTC
      * @param   boolean $includeTime flag for including time to date
+     * @param   string|null $format
      * @return  Zend_Date
      */
-    public function storeDate($store=null, $date=null, $includeTime=false)
+    public function storeDate($store=null, $date=null, $includeTime=false, $format = null)
     {
         $timezone = Mage::app()->getStore($store)->getConfig(self::XML_PATH_DEFAULT_TIMEZONE);
-        $date = new Zend_Date($date, null, $this->getLocale());
+        $date = new Zend_Date($date, $format, $this->getLocale());
         $date->setTimezone($timezone);
         if (!$includeTime) {
             $date->setHour(0)

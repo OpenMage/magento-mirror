@@ -40,7 +40,7 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
     {
         $attrCode = $this->getAttribute();
         if ('category_ids' == $attrCode) {
-            return $this->validateAttribute($object->getAvailableInCategories());
+            return $this->validateAttribute($object->getCategoryIds());
         }
         if ('attribute_set_id' == $attrCode) {
             return $this->validateAttribute($object->getData($attrCode));

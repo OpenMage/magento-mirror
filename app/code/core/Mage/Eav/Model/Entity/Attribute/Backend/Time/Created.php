@@ -33,6 +33,19 @@
  */
 class Mage_Eav_Model_Entity_Attribute_Backend_Time_Created extends Mage_Eav_Model_Entity_Attribute_Backend_Abstract
 {
+
+    /**
+     * Returns date format if it matches a certain mask.
+     * @param $date
+     * @return null|string
+     */
+    protected function _getFormat($date)
+    {
+        if (is_string($date) && preg_match('#^\d{4,4}-\d{2,2}-\d{2,2} \d{2,2}:\d{2,2}:\d{2,2}$#', $date)) {
+            return 'yyyy-MM-dd HH:mm:ss';
+        }
+        return null;
+    }
     /**
      * Set created date
      * Set created date in UTC time zone
@@ -50,7 +63,7 @@ class Mage_Eav_Model_Entity_Attribute_Backend_Time_Created extends Mage_Eav_Mode
             }
         } else {
             // convert to UTC
-            $zendDate = Mage::app()->getLocale()->utcDate(null, $date, true);
+            $zendDate = Mage::app()->getLocale()->utcDate(null, $date, true, $this->_getFormat($date));
             $object->setData($attributeCode, $zendDate->getIso());
         }
 
@@ -68,7 +81,7 @@ class Mage_Eav_Model_Entity_Attribute_Backend_Time_Created extends Mage_Eav_Mode
         $attributeCode = $this->getAttribute()->getAttributeCode();
         $date = $object->getData($attributeCode);
 
-        $zendDate = Mage::app()->getLocale()->storeDate(null, $date, true);
+        $zendDate = Mage::app()->getLocale()->storeDate(null, $date, true, $this->_getFormat($date));
         $object->setData($attributeCode, $zendDate->getIso());
 
         parent::afterLoad($object);

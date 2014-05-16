@@ -278,9 +278,14 @@ abstract class Mage_Catalog_Model_Api2_Product_Rest extends Mage_Catalog_Model_A
             }
         }
         if ($taxClassId && $priceIncludesTax) {
-            $request = Mage::getSingleton('tax/calculation')->getRateRequest(false, false, false, $store);
-            $includingPercent = Mage::getSingleton('tax/calculation')
-                ->getRate($request->setProductClassId($taxClassId));
+            $taxHelper = Mage::helper('tax');
+            if ($taxHelper->isCrossBorderTradeEnabled($store)) {
+                $includingPercent = $percent;
+            } else {
+                $request = Mage::getSingleton('tax/calculation')->getDefaultRateRequest($store);
+                $includingPercent = Mage::getSingleton('tax/calculation')
+                    ->getRate($request->setProductClassId($taxClassId));
+            }
         }
 
         if ($percent === false || is_null($percent)) {

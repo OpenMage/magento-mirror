@@ -30,8 +30,14 @@
  *
  * @author Magento Core Team <core@magentocommerce.com>
  */
-class Mage_Adminhtml_Block_Sales_Order_Create_Totals_Subtotal extends Mage_Adminhtml_Block_Sales_Order_Create_Totals_Default
+class Mage_Adminhtml_Block_Sales_Order_Create_Totals_Subtotal extends
+    Mage_Adminhtml_Block_Sales_Order_Create_Totals_Default
 {
+    /**
+     * Template file path
+     *
+     * @var string
+     */
     protected $_template = 'sales/order/create/totals/subtotal.phtml';
 
     /**
@@ -41,9 +47,15 @@ class Mage_Adminhtml_Block_Sales_Order_Create_Totals_Subtotal extends Mage_Admin
      */
     public function displayBoth()
     {
-        /**
-         * Check without store parameter - we wil get admin configuration value
-         */
-        return Mage::getSingleton('tax/config')->displayCartSubtotalBoth();
+        // Check without store parameter - we will get admin configuration value
+        $displayBoth = Mage::getSingleton('tax/config')->displayCartSubtotalBoth();
+
+        // If trying to display the subtotal with and without taxes, need to ensure the information is present
+        if ($displayBoth) {
+            // Verify that the value for 'subtotal including tax' (or excluding tax) exists
+            $value = $this->getTotal()->getValueInclTax();
+            $displayBoth = isset( $value );
+        }
+        return $displayBoth;
     }
 }

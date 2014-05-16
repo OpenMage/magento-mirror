@@ -190,16 +190,16 @@ class Mage_Bundle_Model_Product_Price extends Mage_Catalog_Model_Product_Type_Pr
      */
     public function getTotalPrices($product, $which = null, $includeTax = null, $takeTierPrice = true)
     {
-        $isPriceFixedType = ($product->getPriceType() == self::PRICE_TYPE_FIXED);
         $this->_isPricesCalculatedByIndex = ($product->getData('min_price') && $product->getData('max_price'));
         $taxHelper = $this->_getHelperData('tax');
 
-        if ($this->_isPricesCalculatedByIndex && !$includeTax) {
+        if ($this->_isPricesCalculatedByIndex) {
             $minimalPrice = $taxHelper->getPrice($product, $product->getData('min_price'), $includeTax,
                 null, null, null, null, null, false);
             $maximalPrice = $taxHelper->getPrice($product, $product->getData('max_price'), $includeTax,
                 null, null, null, null, null, false);
         } else {
+            $isPriceFixedType = ($product->getPriceType() == self::PRICE_TYPE_FIXED);
             /**
              * Check if product price is fixed
              */

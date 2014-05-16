@@ -277,12 +277,17 @@ class Mage_CatalogSearch_Model_Indexer_Fulltext extends Mage_Index_Model_Indexer
             case Mage_Index_Model_Event::TYPE_MASS_ACTION:
                 /* @var $actionObject Varien_Object */
                 $actionObject = $event->getDataObject();
-
-                $reindexData  = array();
+                $attrData     = $actionObject->getAttributesData();
                 $rebuildIndex = false;
+                $reindexData  = array();
+
+                // check if force reindex required
+                if (isset($attrData['force_reindex_required']) && $attrData['force_reindex_required']) {
+                    $rebuildIndex = true;
+                    $reindexData['catalogsearch_force_reindex'] = $attrData['force_reindex_required'];
+                }
 
                 // check if status changed
-                $attrData = $actionObject->getAttributesData();
                 if (isset($attrData['status'])) {
                     $rebuildIndex = true;
                     $reindexData['catalogsearch_status'] = $attrData['status'];
@@ -389,6 +394,10 @@ class Mage_CatalogSearch_Model_Indexer_Fulltext extends Mage_Index_Model_Indexer
         } else if (!empty($data['catalogsearch_product_ids'])) {
             // mass action
             $productIds = $data['catalogsearch_product_ids'];
+            $parentIds = $this->_getResource()->getRelationsByChild($productIds);
+            if (!empty($parentIds)) {
+                $productIds = array_merge($productIds, $parentIds);
+            }
 
             if (!empty($data['catalogsearch_website_ids'])) {
                 $websiteIds = $data['catalogsearch_website_ids'];

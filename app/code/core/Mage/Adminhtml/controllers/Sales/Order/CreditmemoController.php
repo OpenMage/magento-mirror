@@ -392,7 +392,7 @@ class Mage_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Con
                 isset($data['is_customer_notified']),
                 isset($data['is_visible_on_front'])
             );
-            $creditmemo->save();
+            $creditmemo->getCommentsCollection()->save();
             $creditmemo->sendUpdateEmail(!empty($data['is_customer_notified']), $data['comment']);
 
             $this->loadLayout();

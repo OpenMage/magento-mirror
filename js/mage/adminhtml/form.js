@@ -500,6 +500,10 @@ FormElementDependenceController.prototype = {
      */
     trackChange : function(e, idTo, valuesFrom)
     {
+        if (!$(idTo)) {
+            return;
+        }
+
         // define whether the target should show up
         var shouldShowUp = true;
         for (var idFrom in valuesFrom) {

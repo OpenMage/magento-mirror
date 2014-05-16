@@ -897,6 +897,35 @@ class Mage_CatalogInventory_Model_Observer
     }
 
     /**
+     * Add stock status filter to select
+     *
+     * @param Varien_Event_Observer $observer
+     * @return Mage_CatalogInventory_Model_Observer
+     */
+    public function addStockStatusFilterToSelect(Varien_Event_Observer $observer)
+    {
+        $select         = $observer->getEvent()->getSelect();
+        $entityField    = $observer->getEvent()->getEntityField();
+        $websiteField   = $observer->getEvent()->getWebsiteField();
+
+        if ($entityField === null || $websiteField === null) {
+            return $this;
+        }
+
+        if (!($entityField instanceof Zend_Db_Expr)) {
+            $entityField = new Zend_Db_Expr($entityField);
+        }
+        if (!($websiteField instanceof Zend_Db_Expr)) {
+            $websiteField = new Zend_Db_Expr($websiteField);
+        }
+
+        Mage::getResourseSingleton('cataloginventory/stock_status')
+            ->prepareCatalogProductIndexSelect($select, $entityField, $websiteField);
+
+        return $this;
+    }
+
+    /**
      * Lock DB rows for order products
      *
      * We need do it for resolving problems with inventory on placing

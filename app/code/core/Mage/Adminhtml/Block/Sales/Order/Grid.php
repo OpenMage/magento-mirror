@@ -131,7 +131,8 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
                         array(
                             'caption' => Mage::helper('sales')->__('View'),
                             'url'     => array('base'=>'*/sales_order/view'),
-                            'field'   => 'order_id'
+                            'field'   => 'order_id',
+                            'data-column' => 'action',
                         )
                     ),
                     'filter'    => false,

@@ -197,7 +197,7 @@ Product.Bundle.prototype = {
 
         if (this.config.priceType == '1' || taxCalcMethod == CACL_TOTAL_BASE) {
             var result = new Array(price*qty, disposition*qty, priceInclTax*qty);
-            return result;                        
+            return result;
         }
         else if (taxCalcMethod == CACL_UNIT_BASE) {
             price = (Math.round(price*100)/100).toString();
@@ -205,12 +205,12 @@ Product.Bundle.prototype = {
             priceInclTax = (Math.round(priceInclTax*100)/100).toString();
             var result = new Array(price*qty, disposition*qty, priceInclTax*qty);
             return result;
-        } else { //taxCalcMethod == CACL_ROW_BASE) 
+        } else { //taxCalcMethod == CACL_ROW_BASE)
             price = (Math.round(price*qty*100)/100).toString();
             disposition = (Math.round(disposition*qty*100)/100).toString();
             priceInclTax = (Math.round(priceInclTax*qty*100)/100).toString();
             var result = new Array(price, disposition, priceInclTax);
-            return result;            
+            return result;
         }
     },
 

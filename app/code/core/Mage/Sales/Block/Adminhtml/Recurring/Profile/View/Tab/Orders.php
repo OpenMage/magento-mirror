@@ -140,6 +140,7 @@ class Mage_Sales_Block_Adminhtml_Recurring_Profile_View_Tab_Orders
                     'sortable'  => false,
                     'index'     => 'stores',
                     'is_system' => true,
+                    'data-column' => 'action',
             ));
         }
 

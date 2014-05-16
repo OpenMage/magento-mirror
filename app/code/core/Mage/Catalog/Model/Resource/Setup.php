@@ -772,7 +772,7 @@ class Mage_Catalog_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
                         'input'                      => 'select',
                         'source'                     => 'catalog/entity_product_attribute_design_options_container',
                         'required'                   => false,
-                        'default'                    => 'container2',
+                        'default'                    => 'container1',
                         'sort_order'                 => 6,
                         'global'                     => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
                         'group'                      => 'Design',

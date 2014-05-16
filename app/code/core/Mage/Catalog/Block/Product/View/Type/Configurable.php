@@ -230,7 +230,7 @@ class Mage_Catalog_Block_Product_View_Type_Configurable extends Mage_Catalog_Blo
             $taxCalculation->setCustomer(Mage::registry('current_customer'));
         }
 
-        $_request = $taxCalculation->getRateRequest(false, false, false);
+        $_request = $taxCalculation->getDefaultRateRequest();
         $_request->setProductClassId($currentProduct->getTaxClassId());
         $defaultTax = $taxCalculation->getRate($_request);
 

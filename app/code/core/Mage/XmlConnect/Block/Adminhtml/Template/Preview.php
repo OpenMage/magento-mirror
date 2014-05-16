@@ -57,7 +57,7 @@ class Mage_XmlConnect_Block_Adminhtml_Template_Preview extends Mage_Adminhtml_Bl
         $storeId = (int)$this->getRequest()->getParam('store_id');
 
         if (!$storeId) {
-            $storeId = Mage::app()->getDefaultStoreView()->getId();
+            $storeId = Mage::app()->getAnyStoreView()->getId();
         }
 
         $template->emulateDesign($storeId);

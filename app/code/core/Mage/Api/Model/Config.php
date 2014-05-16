@@ -44,6 +44,7 @@ class Mage_Api_Model_Config extends Varien_Simplexml_Config
     {
         $this->setCacheId('config_api');
         $this->setCacheTags(array(self::CACHE_TAG));
+        $this->setCacheChecksum(null);
 
         parent::__construct($sourceData);
         $this->_construct();

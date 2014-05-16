@@ -314,9 +314,9 @@ class Mage_Adminhtml_Catalog_CategoryController extends Mage_Adminhtml_Controlle
             $category->setAttributeSetId($category->getDefaultAttributeSetId());
 
             if (isset($data['category_products']) &&
-                !$category->getProductsReadonly()) {
-                $products = array();
-                parse_str($data['category_products'], $products);
+                !$category->getProductsReadonly()
+            ) {
+                $products = Mage::helper('core/string')->parseQueryStr($data['category_products']);
                 $category->setPostedProducts($products);
             }
 

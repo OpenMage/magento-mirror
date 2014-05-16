@@ -52,4 +52,8 @@ $installer->getConnection()->addConstraint(
     $installer->getTable('core/website'), 'website_id', 'CASCADE', 'CASCADE'
 );
 
-$installer->run("ALTER TABLE `{$ruleGroupWebsiteTable}` ADD PRIMARY KEY ( `rule_id` , `customer_group_id`, `website_id` )");
+$installer->run(
+    "ALTER TABLE `{$ruleGroupWebsiteTable}` ADD PRIMARY KEY ( `rule_id` , `customer_group_id`, `website_id` )"
+);
+
+$installer->endSetup();

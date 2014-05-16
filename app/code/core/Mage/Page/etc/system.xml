@@ -159,6 +159,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </logo_alt>
+                        <logo_src_small translate="label">
+                            <label>Small Logo Image Src</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo_src_small>
                         <welcome translate="label">
                             <label>Welcome Text</label>
                             <frontend_type>text</frontend_type>

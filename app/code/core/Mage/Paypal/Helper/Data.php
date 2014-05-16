@@ -76,4 +76,23 @@ class Mage_Paypal_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return Mage::helper('core')->jsonEncode($config);
     }
+
+    /**
+     * Get selected merchant country code in system configuration
+     *
+     * @return string
+     */
+    public function getConfigurationCountryCode()
+    {
+        $requestParam = Mage_Paypal_Block_Adminhtml_System_Config_Field_Country::REQUEST_PARAM_COUNTRY;
+        $countryCode  = Mage::app()->getRequest()->getParam($requestParam);
+        if (is_null($countryCode) || preg_match('/^[a-zA-Z]{2}$/', $countryCode) == 0) {
+            $countryCode = (string)Mage::getSingleton('adminhtml/config_data')
+                ->getConfigDataValue('paypal/general/merchant_country');
+        }
+        if (empty($countryCode)) {
+            $countryCode = Mage::helper('core')->getDefaultCountry();
+        }
+        return $countryCode;
+    }
 }

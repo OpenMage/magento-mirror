@@ -200,6 +200,7 @@ class Mage_Adminhtml_Block_Promo_Quote_Edit_Tab_Main
         $fieldset->addField('uses_per_customer', 'text', array(
             'name' => 'uses_per_customer',
             'label' => Mage::helper('salesrule')->__('Uses per Customer'),
+            'note' => Mage::helper('salesrule')->__('Usage limit enforced for logged in customers only'),
         ));
 
         $dateFormatIso = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);

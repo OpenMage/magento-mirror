@@ -140,7 +140,7 @@ class Mage_Core_Model_Url_Rewrite_Request
 
         $fromStore = $this->_request->getQuery('___from_store');
         if (!$this->_rewrite->getId() && $fromStore) {
-            $stores = $this->_app->getStores();
+            $stores = $this->_app->getStores(false, true);
             if (!empty($stores[$fromStore])) {
                 /** @var $store Mage_Core_Model_Store */
                 $store = $stores[$fromStore];
@@ -160,7 +160,7 @@ class Mage_Core_Model_Url_Rewrite_Request
 
             $this->_setStoreCodeCookie($currentStore->getCode());
 
-            $targetUrl = $this->_request->getBaseUrl() . '/' . $this->_rewrite->getRequestPath();
+            $targetUrl = $currentStore->getBaseUrl() . $this->_rewrite->getRequestPath();
             $this->_sendRedirectHeaders($targetUrl, true);
         }
 

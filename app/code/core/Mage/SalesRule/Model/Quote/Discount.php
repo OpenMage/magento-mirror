@@ -77,7 +77,7 @@ class Mage_SalesRule_Model_Quote_Discount extends Mage_Sales_Model_Quote_Address
         $this->_calculator->initTotals($items, $address);
 
         $address->setDiscountDescription(array());
-
+        $items = $this->_calculator->sortItemsByPriority($items);
         foreach ($items as $item) {
             if ($item->getNoDiscount()) {
                 $item->setDiscountAmount(0);

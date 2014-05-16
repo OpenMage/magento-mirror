@@ -92,3 +92,5 @@ $dataflowData = array(
 foreach ($dataflowData as $bind) {
     Mage::getModel('dataflow/profile')->setData($bind)->save();
 }
+
+$installer->endSetup();

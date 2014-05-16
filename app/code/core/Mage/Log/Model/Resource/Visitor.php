@@ -131,7 +131,7 @@ class Mage_Log_Model_Resource_Visitor extends Mage_Core_Model_Resource_Db_Abstra
         // Add information about quote to visitor
         $adapter = $this->_getReadAdapter();
         $select = $adapter->select()->from($this->getTable('log/quote_table'), 'quote_id')
-            ->where('visitor_id = ?', $object->getId())->limit(1);
+            ->where('visitor_id = ?', $object->getId())->order('quote_id DESC')->limit(1);
         $result = $adapter->query($select)->fetch();
         if (isset($result['quote_id'])) {
             $object->setQuoteId((int) $result['quote_id']);

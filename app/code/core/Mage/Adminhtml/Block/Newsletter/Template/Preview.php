@@ -49,7 +49,7 @@ class Mage_Adminhtml_Block_Newsletter_Template_Preview extends Mage_Adminhtml_Bl
 
         $storeId = (int)$this->getRequest()->getParam('store_id');
         if(!$storeId) {
-            $storeId = Mage::app()->getDefaultStoreView()->getId();
+            $storeId = Mage::app()->getAnyStoreView()->getId();
         }
 
         Varien_Profiler::start("newsletter_template_proccessing");

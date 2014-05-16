@@ -146,6 +146,7 @@ class Mage_PaypalUk_Model_Api_Nvp extends Mage_Paypal_Model_Api_Nvp
         'XID' => 'centinel_xid',
         'VPAS' => 'centinel_vpas_result',
         'ECISUBMITTED3DS' => 'centinel_eci_result',
+        'USERSELECTEDFUNDINGSOURCE' => 'funding_source',
     );
 
     /**
@@ -215,6 +216,7 @@ class Mage_PaypalUk_Model_Api_Nvp extends Mage_Paypal_Model_Api_Nvp
     protected $_setExpressCheckoutRequest = array(
         'TENDER', 'AMT', 'CURRENCY', 'RETURNURL', 'CANCELURL', 'INVNUM',
         'PAGESTYLE', 'HDRIMG', 'HDRBORDERCOLOR', 'HDRBACKCOLOR', 'PAYFLOWCOLOR', 'LOCALECODE',
+        'USERSELECTEDFUNDINGSOURCE'
     );
     protected $_setExpressCheckoutResponse = array('REPMSG', 'TOKEN');
     /**#@-*/

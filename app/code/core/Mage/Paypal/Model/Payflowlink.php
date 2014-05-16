@@ -440,12 +440,14 @@ class Mage_Paypal_Model_Payflowlink extends Mage_Paypal_Model_Payflowpro
     {
         $request = Mage::getModel('paypal/payflow_request');
         $cscEditable = $this->getConfigData('csc_editable');
+        $bnCode = Mage::getModel('paypal/config')->getBuildNotationCode();
         $request
             ->setUser($this->getConfigData('user', $this->_getStoreId()))
             ->setVendor($this->getConfigData('vendor', $this->_getStoreId()))
             ->setPartner($this->getConfigData('partner', $this->_getStoreId()))
             ->setPwd($this->getConfigData('pwd', $this->_getStoreId()))
             ->setVerbosity($this->getConfigData('verbosity', $this->_getStoreId()))
+            ->setData('BNCODE', $bnCode)
             ->setTender(self::TENDER_CC)
             ->setCancelurl($this->_getCallbackUrl('cancelPayment'))
             ->setErrorurl($this->_getCallbackUrl('returnUrl'))
