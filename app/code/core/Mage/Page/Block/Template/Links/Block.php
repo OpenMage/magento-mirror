@@ -235,7 +235,7 @@ class Mage_Page_Block_Template_Links_Block extends Mage_Core_Block_Template
      */
     public function getAParams()
     {
-        return $this->_prepareParams($this->_liParams);
+        return $this->_prepareParams($this->_aParams);
     }
 
 }
