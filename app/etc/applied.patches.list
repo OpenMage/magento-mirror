@@ -6,3 +6,8 @@ patching file app/code/core/Mage/XmlConnect/Model/Observer.php
 patching file lib/Varien/Db/Adapter/Pdo/Mysql.php
 
 
+2015-04-27 06:15:36 UTC | SUPEE-1533 | EE_1.13 | v1 | _ | n/a | SUPEE-1533_EE_1.13_v1.patch | REVERTED
+patching file app/code/core/Mage/Adminhtml/Block/Dashboard/Graph.php
+patching file app/code/core/Mage/Adminhtml/controllers/DashboardController.php
+
+
