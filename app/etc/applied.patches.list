@@ -1,0 +1,17 @@
+2015-04-21 10:56:50 UTC | SUPEE-5344 | EE_1.14.1.0 | v1 | a5c9abcb6a387aabd6b33ebcb79f6b7a97bbde77 | Thu Feb 5 19:14:49 2015 +0200 | v1.14.1.0..HEAD
+patching file app/code/core/Mage/Admin/Model/Observer.php
+patching file app/code/core/Mage/Core/Controller/Request/Http.php
+patching file app/code/core/Mage/Oauth/controllers/Adminhtml/Oauth/AuthorizeController.php
+patching file app/code/core/Mage/XmlConnect/Model/Observer.php
+patching file lib/Varien/Db/Adapter/Pdo/Mysql.php
+
+
+2015-04-27 06:15:36 UTC | SUPEE-1533 | EE_1.13 | v1 | _ | n/a | SUPEE-1533_EE_1.13_v1.patch | REVERTED
+patching file app/code/core/Mage/Adminhtml/Block/Dashboard/Graph.php
+patching file app/code/core/Mage/Adminhtml/controllers/DashboardController.php
+
+
+2015-04-27 06:19:08 UTC | SUPEE-4291 | EE_1.14.0.1 | v1 | 1fdfe63a44cde9ad7f7b9a6afe228e55d579a499 | Tue Sep 2 17:58:21 2014 +0300 | v1.14.0.1..HEAD | REVERTED
+patching file app/code/core/Mage/Usa/Model/Shipping/Carrier/Usps.php
+
+
