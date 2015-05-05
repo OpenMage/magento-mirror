@@ -1,1 +1,5 @@
 /app/etc/local.xml
+/var/
+/downloader/
+/media/catalog/product/cache
+/.idea/
