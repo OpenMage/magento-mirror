@@ -13,6 +13,7 @@ app/code/local/Lofty/CustomerLiveSync
 app/code/local/Lofty/Rewrites
 app/code/local/Lofty/All
 app/code/local/Lofty/KeywordAlert
+app/code/local/Lofty/Elasticsearch
 app/code/local/VinaiKopp/Api2SessionLogin
 app/code/local/Webskills/Stripe
 app/code/community/Magneto/Debug
@@ -37,6 +38,7 @@ app/etc/modules/Magneto_Debug.xml
 app/etc/modules/Webskills_Stripe.xml
 app/etc/modules/Lofty_CustomerLiveSync.xml
 app/etc/modules/Lofty_KeywordAlert.xml
+app/etc/modules/Lofty_Elasticsearch.xml
 app/etc/modules/VinaiKopp_Api2SessionLogin.xml
 app/etc/modules/VinaiKopp_Api2SessionAuthAdapter.xml
 app/etc/modules/Lofty_Offer.xml
