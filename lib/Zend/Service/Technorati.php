@@ -84,9 +84,9 @@ class Zend_Service_Technorati
      */
     public function __construct($apiKey)
     {
-        iconv_set_encoding('output_encoding', 'UTF-8');
-        iconv_set_encoding('input_encoding', 'UTF-8');
-        iconv_set_encoding('internal_encoding', 'UTF-8');
+        @iconv_set_encoding('output_encoding', 'UTF-8');
+        @iconv_set_encoding('input_encoding', 'UTF-8');
+        @iconv_set_encoding('internal_encoding', 'UTF-8');
 
         $this->_apiKey = $apiKey;
     }

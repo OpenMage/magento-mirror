@@ -518,7 +518,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
             $status = false;
 
             $origenc = iconv_get_encoding('internal_encoding');
-            iconv_set_encoding('internal_encoding', 'UTF-8');
+            @iconv_set_encoding('internal_encoding', 'UTF-8');
             do {
                 // First check TLD
                 $matches = array();
@@ -614,7 +614,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                 }
             } while (false);
 
-            iconv_set_encoding('internal_encoding', $origenc);
+            @iconv_set_encoding('internal_encoding', $origenc);
             // If the input passes as an Internet domain name, and domain names are allowed, then the hostname
             // passes validation
             if ($status && ($this->_options['allow'] & self::ALLOW_DNS)) {
