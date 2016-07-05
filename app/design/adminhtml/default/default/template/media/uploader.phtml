@@ -60,7 +60,7 @@
 <script type="text/javascript">
 //<![CDATA[
 
-var maxUploadFileSizeInBytes = <?php echo $this->getDataMaxSizeInBytes() ?>;
+var maxUploadFileSizeInBytes = '<?php echo $this->getDataMaxSizeInBytes() ?>';
 var maxUploadFileSize = '<?php echo $this->getDataMaxSize() ?>';
 
 <?php echo $this->getJsObjectName() ?> = new Flex.Uploader('<?php echo $this->getHtmlId() ?>', '<?php echo $this->getUploaderUrl('media/uploader.swf') ?>', <?php echo $this->getConfigJson() ?>);
