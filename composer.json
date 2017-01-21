@@ -1,5 +1,6 @@
 {
     "name": "fwcommunity/magento-ce-1-9-3-1",
+    "type": "magento-module",
     "description": "Magento 1 CE (Community Edition) Version 1.9.3.1",
     "license": "OSL-3.0",
     "authors": [
