@@ -1,0 +1,13 @@
+{
+    "name": "fwcommunity/magento-ce-1-9-3-1",
+    "description": "Magento 1 CE (Community Edition) Version 1.9.3.1",
+    "license": "OSL-3.0",
+    "authors": [
+        { "name": "Magento Support", "email": "support@magento.com", "role": "Owner" },
+        { "name": "Robert Krule", "email": "rkrule8638@gmail.com", "role": "Configurator" },
+        { "name": "Darrell Starnes", "email": "darrell.starnes@fwmedia.com", "role": "F+W Media Product Owner" }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    }
+}
