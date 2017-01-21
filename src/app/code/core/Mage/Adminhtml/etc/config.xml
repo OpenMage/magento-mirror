@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Adminhtml
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Adminhtml>
+            <version>0.7.1</version>
+        </Mage_Adminhtml>
+    </modules>
+    <global>
+        <models>
+            <adminhtml>
+                <class>Mage_Adminhtml_Model</class>
+                <resourceModel>adminhtml_resource</resourceModel>
+            </adminhtml>
+            <adminhtml_resource>
+                <class>Mage_Adminhtml_Model_Resource</class>
+                <deprecatedNode>adminhtml_mysql4</deprecatedNode>
+            </adminhtml_resource>
+        </models>
+        <blocks>
+            <adminhtml>
+                <class>Mage_Adminhtml_Block</class>
+            </adminhtml>
+        </blocks>
+        <template>
+            <email>
+                <admin_emails_forgot_email_template translate="label" module="adminhtml">
+                    <label>Forgot Admin Password</label>
+                    <file>admin_password_reset_confirmation.html</file>
+                    <type>html</type>
+                </admin_emails_forgot_email_template>
+            </email>
+        </template>
+        <events>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <store>
+                        <class>adminhtml/observer</class>
+                        <method>bindStore</method>
+                    </store>
+                    <massaction>
+                        <class>adminhtml/observer</class>
+                        <method>massactionPrepareKey</method>
+                    </massaction>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+            <admin_user_authenticate_after>
+                <observers>
+                    <configuration_files_access_level_verification>
+                        <class>adminhtml/observer</class>
+                        <method>clearCacheConfigurationFilesAccessLevelVerification</method>
+                    </configuration_files_access_level_verification>
+                </observers>
+            </admin_user_authenticate_after>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <use>admin</use>
+                <args>
+                    <module>Mage_Adminhtml</module>
+                    <frontName>admin</frontName>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <auth>
+                        <class>admin/observer</class>
+                        <method>actionPreDispatchAdmin</method>
+                    </auth>
+                </observers>
+            </controller_action_predispatch>
+            <core_locale_set_locale>
+                <observers>
+                    <bind_locale>
+                        <class>adminhtml/observer</class>
+                        <method>bindLocale</method>
+                    </bind_locale>
+                </observers>
+            </core_locale_set_locale>
+            <admin_system_config_changed_section_admin>
+                <observers>
+                    <bind_locale>
+                        <class>adminhtml/system_config_backend_admin_observer</class>
+                        <method>afterCustomUrlChanged</method>
+                    </bind_locale>
+                </observers>
+            </admin_system_config_changed_section_admin>
+        </events>
+        <global_search>
+            <products>
+                <class>adminhtml/search_catalog</class>
+                <acl>catalog</acl>
+            </products>
+            <customers>
+                <class>adminhtml/search_customer</class>
+                <acl>customer</acl>
+            </customers>
+            <sales>
+                <class>adminhtml/search_order</class>
+                <acl>sales</acl>
+            </sales>
+        </global_search>
+        <translate>
+            <modules>
+                <Mage_Adminhtml>
+                    <files>
+                        <default>Mage_Adminhtml.csv</default>
+                    </files>
+                </Mage_Adminhtml>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <adminhtml>
+                    <file>main.xml</file>
+                </adminhtml>
+                <report>
+                    <file>report.xml</file>
+                </report>
+                <catalog>
+                    <file>catalog.xml</file>
+                </catalog>
+                <customer>
+                    <file>customer.xml</file>
+                </customer>
+                <promo>
+                    <file>promo.xml</file>
+                </promo>
+            </updates>
+        </layout>
+        <sales>
+            <order>
+                <create>
+                    <available_product_types>
+                        <simple/>
+                        <virtual/>
+                        <configurable/>
+                        <grouped/>
+                    </available_product_types>
+                </create>
+            </order>
+        </sales>
+        <messages>
+            <website_chnaged_indexers translate="label" module="catalog">
+                <label><![CDATA[Please refresh "Catalog URL Rewrites" and "Product Attributes" in System -&gt; <a href="%s">Index Management</a>]]></label>
+            </website_chnaged_indexers>
+        </messages>
+    </adminhtml>
+    <default>
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <email_folder>email</email_folder>
+                </allowed_resources>
+            </media_storage_configuration>
+            <emails>
+                <forgot_email_template>system_emails_forgot_email_template</forgot_email_template>
+                <forgot_email_identity>general</forgot_email_identity>
+            </emails>
+            <dashboard>
+                <enable_charts>1</enable_charts>
+            </dashboard>
+            <catalog>
+                <frontend>
+                    <allowed_html_tags_list>a,abbr,acronym,address,applet,area,base,basefont,bdo,big,blockquote,br,button,caption,center,cite,code,col,colgroup,dd,del,dfn,dir,div,dl,dt,em,i,fieldset,font,form,frame,frameset,h1,h2,h3,h4,h5,h6,hr,img,input,ins,kbd,label,legend,li,map,menu,meta,noscript,ol,optgroup,option,p,param,pre,q,s,samp,select,small,span,strike,strong,b,sub,sup,table,tbody,td,textarea,tfoot,th,thead,title,tr,tt,u,ul,var</allowed_html_tags_list>
+                </frontend>
+            </catalog>
+        </system>
+        <general>
+            <file>
+                <sitemap_generate_valid_paths>
+                    <!-- This data should be merged with public_files_valid_paths -->
+                    <available>
+                        <any_path>/*/*.xml</any_path>
+                    </available>
+                </sitemap_generate_valid_paths>
+            </file>
+            <validator_data>
+                <input_types>
+                    <price>price</price>
+                    <media_image>media_image</media_image>
+                    <gallery>gallery</gallery>
+                </input_types>
+            </validator_data>
+        </general>
+        <hints>
+            <store_switcher>
+                <url><![CDATA[http://merch.docs.magento.com/ce/user_guide/configuration/scope.html]]></url>
+                <enabled>1</enabled>
+            </store_switcher>
+        </hints>
+        <help>
+            <target_version>ce</target_version>
+        </help>
+    </default>
+    <stores>
+        <admin>
+            <design>
+                <package>
+                    <name>default</name>
+                </package>
+                <theme>
+                    <default>default</default>
+                </theme>
+            </design>
+        </admin>
+    </stores>
+    <websites>
+        <admin>
+            <web>
+                <routers>
+                    <frontend>
+                        <disabled>true</disabled>
+                    </frontend>
+                </routers>
+                <default>
+                    <no_route>admin/index/noRoute</no_route>
+                </default>
+            </web>
+        </admin>
+    </websites>
+</config>

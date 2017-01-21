@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Rule
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Rule>
+            <version>1.6.0.0</version>
+        </Mage_Rule>
+    </modules>
+    <global>
+        <models>
+            <rule>
+                <class>Mage_Rule_Model</class>
+                <resourceModel>rule_resource</resourceModel>
+            </rule>
+            <rule_resource>
+                <class>Mage_Rule_Model_Resource</class>
+                <deprecatedNode>rule_mysql4</deprecatedNode>
+            </rule_resource>
+        </models>
+        <blocks>
+            <rule>
+                <class>Mage_Rule_Block</class>
+            </rule>
+        </blocks>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Mage_Rule>
+                    <files>
+                        <default>Mage_Rule.csv</default>
+                    </files>
+                </Mage_Rule>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <translate>
+            <modules>
+                <Mage_Rule>
+                    <files>
+                        <default>Mage_Rule.csv</default>
+                    </files>
+                </Mage_Rule>
+            </modules>
+        </translate>
+    </frontend>
+</config>

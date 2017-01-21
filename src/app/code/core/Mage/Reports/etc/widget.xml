@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Reports
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<widgets>
+    <recently_viewed type="reports/product_widget_viewed" translate="name description" module="reports">
+        <name>Recently Viewed Products</name>
+        <description>List of Products Recently Viewed by Visitor</description>
+        <parameters>
+            <page_size translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>5</value>
+                <label>Number of Products to display</label>
+                <type>text</type>
+            </page_size>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>reports/product/widget/viewed_grid.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>reports/widget/viewed/content/viewed_grid.phtml</value>
+                        <label>Viewed Products Grid Template</label>
+                    </default>
+                    <list translate="label">
+                        <value>reports/widget/viewed/content/viewed_list.phtml</value>
+                        <label>Viewed Products List Template</label>
+                    </list>
+                </values>
+            </template>
+        </parameters>
+    </recently_viewed>
+    <recently_compared type="reports/product_widget_compared" translate="name description" module="reports">
+        <name>Recently Compared Products</name>
+        <description>List of Products Recently Compared and Removed from the Compare List by Visitor</description>
+        <parameters>
+            <page_size translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>5</value>
+                <label>Number of Products to display</label>
+                <type>text</type>
+            </page_size>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>reports/product/widget/viewed_grid.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>reports/widget/compared/content/compared_grid.phtml</value>
+                        <label>Compared Products Grid Template</label>
+                    </default>
+                    <list translate="label">
+                        <value>reports/widget/compared/content/compared_list.phtml</value>
+                        <label>Compared Products List Template</label>
+                    </list>
+                </values>
+            </template>
+        </parameters>
+    </recently_compared>
+</widgets>

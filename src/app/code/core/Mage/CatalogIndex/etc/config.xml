@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_CatalogIndex
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_CatalogIndex>
+            <version>1.6.0.0</version>
+        </Mage_CatalogIndex>
+    </modules>
+    <global>
+        <catalogindex>
+            <indexer>
+                <eav>
+                    <class>catalogindex/indexer_eav</class>
+                </eav>
+                <price>
+                    <class>catalogindex/indexer_price</class>
+                </price>
+                <tier_price>
+                    <class>catalogindex/indexer_tierprice</class>
+                </tier_price>
+                <minimal_price>
+                    <class>catalogindex/indexer_minimalprice</class>
+                </minimal_price>
+            </indexer>
+        </catalogindex>
+        <models>
+            <catalogindex>
+                <class>Mage_CatalogIndex_Model</class>
+                <resourceModel>catalogindex_resource</resourceModel>
+            </catalogindex>
+            <catalogindex_resource>
+                <class>Mage_CatalogIndex_Model_Resource</class>
+                <deprecatedNode>catalogindex_mysql4</deprecatedNode>
+                <entities>
+                    <eav>
+                        <table>catalog_product_index_eav</table>
+                    </eav>
+                    <price>
+                        <table>catalog_product_index_price</table>
+                    </price>
+                    <minimal_price>
+                        <table>catalogindex_minimal_price</table>
+                    </minimal_price>
+                    <aggregation>
+                        <table>catalogindex_aggregation</table>
+                    </aggregation>
+                    <aggregation_tag>
+                        <table>catalogindex_aggregation_tag</table>
+                    </aggregation_tag>
+                    <aggregation_to_tag>
+                        <table>catalogindex_aggregation_to_tag</table>
+                    </aggregation_to_tag>
+                </entities>
+            </catalogindex_resource>
+        </models>
+        <resources>
+            <catalogindex_setup>
+                <setup>
+                    <module>Mage_CatalogIndex</module>
+                    <class>Mage_CatalogIndex_Model_Resource_Setup</class>
+                </setup>
+            </catalogindex_setup>
+        </resources>
+        <events>
+        </events>
+    </global>
+    <adminhtml>
+        <events>
+        </events>
+    </adminhtml>
+    <crontab>
+        <jobs>
+        </jobs>
+    </crontab>
+</config>

@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Eav
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Eav>
+            <version>1.6.0.1</version>
+        </Mage_Eav>
+    </modules>
+    <global>
+        <models>
+            <eav>
+                <class>Mage_Eav_Model</class>
+                <resourceModel>eav_resource</resourceModel>
+            </eav>
+            <eav_resource>
+                <class>Mage_Eav_Model_Resource</class>
+                <deprecatedNode>eav_mysql4</deprecatedNode>
+                <entities>
+                    <entity>
+                        <table>eav_entity</table>
+                    </entity>
+                    <entity_value_prefix>
+                        <table>eav_entity</table>
+                    </entity_value_prefix>
+                    <entity_type>
+                        <table>eav_entity_type</table>
+                    </entity_type>
+                    <entity_store>
+                        <table>eav_entity_store</table>
+                    </entity_store>
+                    <entity_attribute>
+                        <table>eav_entity_attribute</table>
+                    </entity_attribute>
+                    <attribute>
+                        <table>eav_attribute</table>
+                    </attribute>
+                    <attribute_set>
+                        <table>eav_attribute_set</table>
+                    </attribute_set>
+                    <attribute_group>
+                        <table>eav_attribute_group</table>
+                    </attribute_group>
+                    <attribute_option>
+                        <table>eav_attribute_option</table>
+                    </attribute_option>
+                    <attribute_option_value>
+                        <table>eav_attribute_option_value</table>
+                    </attribute_option_value>
+                    <attribute_label>
+                        <table>eav_attribute_label</table>
+                    </attribute_label>
+                    <form_type>
+                        <table>eav_form_type</table>
+                    </form_type>
+                    <form_type_entity>
+                        <table>eav_form_type_entity</table>
+                    </form_type_entity>
+                    <form_fieldset>
+                        <table>eav_form_fieldset</table>
+                    </form_fieldset>
+                    <form_fieldset_label>
+                        <table>eav_form_fieldset_label</table>
+                    </form_fieldset_label>
+                    <form_element>
+                        <table>eav_form_element</table>
+                    </form_element>
+                </entities>
+            </eav_resource>
+        </models>
+        <resources>
+            <eav_setup>
+                <setup>
+                    <module>Mage_Eav</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </eav_setup>
+        </resources>
+        <cache>
+            <types>
+                <eav translate="label,description" module="eav">
+                    <label>EAV types and attributes</label>
+                    <description>Entity types declaration cache.</description>
+                    <tags>eav</tags>
+                </eav>
+            </types>
+        </cache>
+        <eav_frontendclasses>
+        </eav_frontendclasses>
+        <eav_attributes>
+        </eav_attributes>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Mage_Eav>
+                    <files>
+                        <default>Mage_Eav.csv</default>
+                    </files>
+                </Mage_Eav>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <translate>
+            <modules>
+                <Mage_Eav>
+                    <files>
+                        <default>Mage_Eav.csv</default>
+                    </files>
+                </Mage_Eav>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <general>
+            <validator_data>
+                <input_types>
+                    <text>text</text>
+                    <textarea>textarea</textarea>
+                    <date>date</date>
+                    <boolean>boolean</boolean>
+                    <multiselect>multiselect</multiselect>
+                    <select>select</select>
+                </input_types>
+            </validator_data>
+        </general>
+    </default>
+</config>

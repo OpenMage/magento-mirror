@@ -1,0 +1,97 @@
+<!--@subject {{var store.getFrontendName()}}: Credit Memo # {{var creditmemo.increment_id}} for Order # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"htmlescape var=$billing.getName()":"Guest Customer Name (Billing)",
+"var store.getFrontendName()":"Store Name",
+"var creditmemo.increment_id":"Credit Memo Id",
+"var order.increment_id":"Order Id",
+"var order.billing_address.format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.shipping_address.format('html')":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"layout handle=\"sales_email_order_creditmemo_items\" creditmemo=$creditmemo order=$order":"Credit Memo Items Grid",
+"var comment":"Credit Memo Comment"}
+@-->
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="email-heading">
+                        <h1>Thank you for your order from {{var store.getFrontendName()}}.</h1>
+                        <p>You can check the status of your order by <a href="{{store url="customer/account/"}}"">logging into your account</a>.</p>
+                    </td>
+                    <td class="store-info">
+                        <h4>Order Questions?</h4>
+                        <p>
+                            {{depend store_phone}}
+                            <b>Call Us:</b>
+                            <a href="tel:{{var phone}}">{{var store_phone}}</a><br>
+                            {{/depend}}
+                            {{depend store_hours}}
+                            <span class="no-link">{{var store_hours}}</span><br>
+                            {{/depend}}
+                            {{depend store_email}}
+                            <b>Email:</b> <a href="mailto:{{var store_email}}">{{var store_email}}</a>
+                            {{/depend}}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="order-details">
+            <h3>Your Credit Memo <span class="no-link">#{{var creditmemo.increment_id}}</span></h3>
+            <p>Order <span class="no-link">#{{var order.increment_id}}</span></p>
+        </td>
+    </tr>
+    <tr class="order-information">
+        <td>
+            {{if comment}}
+            <table cellspacing="0" cellpadding="0" class="message-container">
+                <tr>
+                    <td>{{var comment}}</td>
+                </tr>
+            </table>
+            {{/if}}
+            {{layout handle="sales_email_order_creditmemo_items" creditmemo=$creditmemo order=$order}}
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="address-details">
+                        <h6>Bill to:</h6>
+                        <p><span class="no-link">{{var order.billing_address.format('html')}}</span></p>
+                    </td>
+                    {{depend order.getIsNotVirtual()}}
+                    <td class="address-details">
+                        <h6>Ship to:</h6>
+                        <p><span class="no-link">{{var order.shipping_address.format('html')}}</span></p>
+                    </td>
+                    {{/depend}}
+                </tr>
+                <tr>
+                    {{depend order.getIsNotVirtual()}}
+                    <td class="method-info">
+                        <h6>Shipping method:</h6>
+                        <p>{{var order.shipping_description}}</p>
+                    </td>
+                    {{/depend}}
+                    <td class="method-info">
+                        <h6>Payment method:</h6>
+                        {{var payment_html}}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

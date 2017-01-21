@@ -1,0 +1,30 @@
+<!--@subject Welcome, {{var name}} @-->
+<!--@vars
+{"htmlescape var=$name":"Recipient Name",
+"var email":"Recipient Email address",
+"var product_url":"Url for Product",
+"var product_name":"Product Name",
+"var product_image":"Url for product small image (75 px)",
+"var sender_name":"Sender name",
+"var sender_email":"Sender email",
+"var message":"Sender Message"}
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>{{htmlescape var=$name}},</h1>
+            <p>Your friend wants to share this product with you: <a href="{{var product_url}}">{{var product_name}}</a></p>
+            <table cellspacing="0" cellpadding="0" class="message-container">
+                <tr>
+                    <td><strong>Message:</strong> {{var message}}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Core
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<!--
+Please note that this file is not merged into configuration. You are supposed to copy appropriate nodes
+to app/etc/local.xml manually.
+-->
+<config>
+    <global>
+        <session_save><![CDATA[]]></session_save> <!-- db / memcache / empty=files -->
+        <session_save_path><![CDATA[]]></session_save_path><!-- e.g. for memcache session save handler tcp://10.0.0.1:11211?persistent=1&weight=2&timeout=10&retry_interval=10 -->
+        <session_cache_limiter><![CDATA[]]></session_cache_limiter><!-- see http://php.net/manual/en/function.session-cache-limiter.php#82174 for possible values -->
+        <cache>
+            <backend></backend><!-- apc / memcached / xcache / empty=file -->
+            <backend_options>
+                <connection></connection> <!-- Custom connection for db backend -->
+                <enable_two_levels>true</enable_two_levels> <!-- Enable two level cache -->
+            </backend_options>
+            <slow_backend></slow_backend> <!-- database / file (default) - used for 2 levels cache setup, necessary for all shared memory storages -->
+            <slow_backend_store_data></slow_backend_store_data> <!-- 1 / 0 (default) - used for 2 levels cache setup, sets whether store data in db slow cache backend -->
+            <auto_refresh_fast_cache></auto_refresh_fast_cache> <!-- 1 / 0 (default) - used for 2 levels cache setup, sets whether refresh data in fast cache backend -->
+            <memcached><!-- memcached cache backend related config -->
+                <servers><!-- any number of server nodes can be included -->
+                    <server>
+                        <host><![CDATA[]]></host>
+                        <port><![CDATA[]]></port>
+                        <persistent><![CDATA[]]></persistent>
+                        <weight><![CDATA[]]></weight>
+                        <timeout><![CDATA[]]></timeout>
+                        <retry_interval><![CDATA[]]></retry_interval>
+                        <status><![CDATA[]]></status>
+                    </server>
+                </servers>
+                <compression><![CDATA[0]]></compression>
+                <cache_dir><![CDATA[]]></cache_dir>
+                <hashed_directory_level><![CDATA[]]></hashed_directory_level>
+                <hashed_directory_perm><![CDATA[]]></hashed_directory_perm>
+                <file_name_prefix><![CDATA[]]></file_name_prefix>
+            </memcached>
+        </cache>
+
+        <!-- example of two level cache setup with slow backend at files. -->
+        <full_page_cache>
+            <backend_options>
+                 <cache_dir>full_page_cache</cache_dir>
+             </backend_options>
+             <slow_backend_options>
+                 <hashed_directory_level>1</hashed_directory_level>
+                 <hashed_directory_perm>0777</hashed_directory_perm>
+                 <file_name_prefix>fpc</file_name_prefix>
+                 <cache_dir><![CDATA[full_page_cache]]></cache_dir>
+             </slow_backend_options>
+         </full_page_cache>
+
+        <remote_addr_headers><!-- list headers that contain real client IP if webserver is behind a reverse proxy -->
+            <header1>HTTP_X_REAL_IP</header1>
+            <header2>HTTP_X_FORWARDED_FOR</header2>
+        </remote_addr_headers>
+
+        <!-- example of redis cache -->
+        <cache>
+          <backend>Cm_Cache_Backend_Redis</backend>
+          <backend_options>
+            <server>127.0.0.1</server>                               <!-- or absolute path to unix socket -->
+            <port>6379</port>
+            <persistent></persistent>                                <!-- Specify unique string to enable persistent connections. E.g.: sess-db0; bugs with phpredis and php-fpm are known: https://github.com/nicolasff/phpredis/issues/70 -->
+            <database>0</database>                                   <!-- Redis database number; protection against accidental data loss is improved by not sharing databases -->
+            <password></password>                                    <!-- Specify if your Redis server requires authentication -->
+            <force_standalone>0</force_standalone>                   <!-- 0 for phpredis, 1 for standalone PHP -->
+            <connect_retries>1</connect_retries>                     <!-- Reduces errors due to random connection failures; a value of 1 will not retry after the first failure -->
+            <read_timeout>10</read_timeout>                          <!-- Set read timeout duration; phpredis does not currently support setting read timeouts -->
+            <automatic_cleaning_factor>0</automatic_cleaning_factor> <!-- Disabled by default -->
+            <compress_data>1</compress_data>                         <!-- 0-9 for compression level, recommended: 0 or 1 -->
+            <compress_tags>1</compress_tags>                         <!-- 0-9 for compression level, recommended: 0 or 1 -->
+            <compress_threshold>20480</compress_threshold>           <!-- Strings below this size will not be compressed -->
+            <compression_lib>gzip</compression_lib>                  <!-- Support gzip, lzf, lz4 (https://github.com/kjdev/php-ext-lz4) or snappy (https://github.com/goatherd/php-snappy) -->
+            <use_lua>0</use_lua>                                     <!-- Set to 1 if Lua scripts should be used for some operations -->
+          </backend_options>
+        </cache>
+
+        <!-- example of redis Magento Enterprise FPC -->
+        <full_page_cache>
+          <backend>Cm_Cache_Backend_Redis</backend>
+          <backend_options>
+            <server>127.0.0.1</server>              <!-- or absolute path to unix socket -->
+            <port>6379</port>
+            <persistent></persistent>               <!-- Specify unique string to enable persistent connections. E.g.: sess-db0; bugs with phpredis and php-fpm are known: https://github.com/nicolasff/phpredis/issues/70 -->
+            <database>1</database>                  <!-- Redis database number; protection against accidental data loss is improved by not sharing databases -->
+            <password></password>                   <!-- Specify if your Redis server requires authentication -->
+            <force_standalone>0</force_standalone>  <!-- 0 for phpredis, 1 for standalone PHP -->
+            <connect_retries>1</connect_retries>    <!-- Reduces errors due to random connection failures -->
+            <lifetimelimit>57600</lifetimelimit>    <!-- 16 hours of lifetime for cache record -->
+            <compress_data>0</compress_data>        <!-- DISABLE compression for EE FPC since it already uses compression -->
+          </backend_options>
+        </full_page_cache>
+
+        <!-- example of redis session storage -->
+        <session_save>db</session_save>
+        <redis_session>                                          <!-- All options seen here are the defaults -->
+            <host>127.0.0.1</host>                               <!-- Specify an absolute path if using a unix socket -->
+            <port>6379</port>
+            <password></password>                                <!-- Specify if your Redis server requires authentication -->
+            <timeout>2.5</timeout>                               <!-- This is the Redis connection timeout, not the locking timeout -->
+            <persistent></persistent>                            <!-- Specify unique string to enable persistent connections. E.g.: sess-db0; bugs with phpredis and php-fpm are known: https://github.com/nicolasff/phpredis/issues/70 -->
+            <db>0</db>                                           <!-- Redis database number; protection from accidental loss is improved by using a unique DB number for sessions -->
+            <compression_threshold>2048</compression_threshold>  <!-- Set to 0 to disable compression (recommended when suhosin.session.encrypt=on); known bug with strings over 64k: https://github.com/colinmollenhour/Cm_Cache_Backend_Redis/issues/18 -->
+            <compression_lib>gzip</compression_lib>              <!-- gzip, lzf, lz4 (https://github.com/kjdev/php-ext-lz4) or snappy (https://github.com/goatherd/php-snappy) -->
+            <log_level>1</log_level>                             <!-- 0 (emergency: system is unusable), 4 (warning; additional information, recommended), 5 (notice: normal but significant condition), 6 (info: informational messages), 7 (debug: the most information for development/testing) -->
+            <max_concurrency>6</max_concurrency>                 <!-- maximum number of processes that can wait for a lock on one session; for large production clusters, set this to at least 10% of the number of PHP processes -->
+            <break_after_frontend>5</break_after_frontend>       <!-- seconds to wait for a session lock in the frontend; not as critical as admin -->
+            <break_after_adminhtml>30</break_after_adminhtml>
+            <first_lifetime>600</first_lifetime>                 <!-- Lifetime of session for non-bots on the first write. 0 to disable -->
+            <bot_first_lifetime>60</bot_first_lifetime>          <!-- Lifetime of session for bots on the first write. 0 to disable -->
+            <bot_lifetime>7200</bot_lifetime>                    <!-- Lifetime of session for bots on subsequent writes. 0 to disable -->
+            <disable_locking>0</disable_locking>                 <!-- Disable session locking entirely. -->
+            <min_lifetime>60</min_lifetime>                      <!-- Set the minimum session lifetime -->
+            <max_lifetime>2592000</max_lifetime>                 <!-- Set the maximum session lifetime -->
+        </redis_session>
+    </global>
+</config>

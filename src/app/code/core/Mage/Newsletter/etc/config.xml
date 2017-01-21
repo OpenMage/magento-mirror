@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Newsletter
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Newsletter>
+            <version>1.6.0.2</version>
+        </Mage_Newsletter>
+    </modules>
+    <global>
+        <blocks>
+            <newsletter>
+                <class>Mage_Newsletter_Block</class>
+            </newsletter>
+        </blocks>
+        <models>
+            <newsletter>
+                <class>Mage_Newsletter_Model</class>
+                <resourceModel>newsletter_resource</resourceModel>
+            </newsletter>
+            <newsletter_resource>
+                <class>Mage_Newsletter_Model_Resource</class>
+                <deprecatedNode>newsletter_mysql4</deprecatedNode>
+                <entities>
+                    <subscriber>
+                        <table>newsletter_subscriber</table>
+                    </subscriber>
+                    <queue>
+                        <table>newsletter_queue</table>
+                    </queue>
+                    <queue_link>
+                        <table>newsletter_queue_link</table>
+                    </queue_link>
+                    <queue_store_link>
+                        <table>newsletter_queue_store_link</table>
+                    </queue_store_link>
+                    <template>
+                        <table>newsletter_template</table>
+                    </template>
+                    <problem>
+                        <table>newsletter_problem</table>
+                    </problem>
+                </entities>
+            </newsletter_resource>
+        </models>
+        <resources>
+            <newsletter_setup>
+                <setup>
+                    <module>Mage_Newsletter</module>
+                </setup>
+            </newsletter_setup>
+        </resources>
+        <template>
+            <email>
+                <newsletter_subscription_confirm_email_template translate="label" module="newsletter">
+                    <label>Newsletter subscription confirmation</label>
+                    <file>newsletter_subscr_confirm.html</file>
+                    <type>html</type>
+                </newsletter_subscription_confirm_email_template>
+                <newsletter_subscription_success_email_template translate="label" module="newsletter">
+                    <label>Newsletter subscription success</label>
+                    <file>newsletter_subscr_success.html</file>
+                    <type>html</type>
+                </newsletter_subscription_success_email_template>
+                <newsletter_subscription_un_email_template translate="label" module="newsletter">
+                    <label>Newsletter unsubscription success</label>
+                    <file>newsletter_unsub_success.html</file>
+                    <type>html</type>
+                </newsletter_subscription_un_email_template>
+            </email>
+        </template>
+        <newsletter>
+            <tempate_filter>newsletter/template_filter</tempate_filter>
+        </newsletter>
+    </global>
+    <adminhtml>
+        <events>
+            <customer_save_after>
+                <observers>
+                    <newsletter_subscribe_observer>
+                        <class>newsletter/observer</class>
+                        <method>subscribeCustomer</method>
+                    </newsletter_subscribe_observer>
+                </observers>
+            </customer_save_after>
+            <customer_delete_after>
+                <observers>
+                    <newsletter_subscribe_observer>
+                        <class>newsletter/observer</class>
+                        <method>customerDeleted</method>
+                    </newsletter_subscribe_observer>
+                </observers>
+            </customer_delete_after>
+        </events>
+        <translate>
+            <modules>
+                <Mage_Newsletter>
+                    <files>
+                        <default>Mage_Newsletter.csv</default>
+                    </files>
+                </Mage_Newsletter>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <newsletter>
+                    <file>newsletter.xml</file>
+                </newsletter>
+            </updates>
+        </layout>
+    </adminhtml>
+    <frontend>
+        <events>
+            <customer_save_after>
+                <observers>
+                    <newsletter_subscribe_observer>
+                        <class>newsletter/observer</class>
+                        <method>subscribeCustomer</method>
+                    </newsletter_subscribe_observer>
+                </observers>
+            </customer_save_after>
+            <customer_delete_after>
+                <observers>
+                    <newsletter_subscribe_observer>
+                        <class>newsletter/observer</class>
+                        <method>customerDeleted</method>
+                    </newsletter_subscribe_observer>
+                </observers>
+            </customer_delete_after>
+        </events>
+        <routers>
+            <newsletter>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Newsletter</module>
+                    <frontName>newsletter</frontName>
+                </args>
+            </newsletter>
+        </routers>
+        <translate>
+            <modules>
+                <Mage_Newsletter>
+                    <files>
+                        <default>Mage_Newsletter.csv</default>
+                    </files>
+                </Mage_Newsletter>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <newsletter module="Mage_Newsletter">
+                    <file>newsletter.xml</file>
+                </newsletter>
+            </updates>
+        </layout>
+        <secure_url>
+            <newsletter_manage>/newsletter/manage/</newsletter_manage>
+        </secure_url>
+    </frontend>
+    <default>
+        <newsletter>
+            <subscription>
+                <allow_guest_subscribe>1</allow_guest_subscribe>
+                <confirm>0</confirm>
+                <confirm_email_identity>support</confirm_email_identity>
+                <confirm_email_template>newsletter_subscription_confirm_email_template</confirm_email_template>
+                <success_email_identity>general</success_email_identity>
+                <success_email_template>newsletter_subscription_success_email_template</success_email_template>
+                <un_email_identity>support</un_email_identity>
+                <un_email_template>newsletter_subscription_un_email_template</un_email_template>
+            </subscription>
+            <sending>
+                <set_return_path>0</set_return_path>
+            </sending>
+        </newsletter>
+    </default>
+    <crontab>
+        <jobs>
+            <newsletter_send_all>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>newsletter/observer::scheduledSend</model>
+                </run>
+            </newsletter_send_all>
+        </jobs>
+    </crontab>
+</config>

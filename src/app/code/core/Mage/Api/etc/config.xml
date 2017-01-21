@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Api
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Api>
+            <version>1.6.0.1</version>
+        </Mage_Api>
+    </modules>
+    <global>
+        <ignoredModules>
+            <entities>
+                <api/>
+            </entities>
+        </ignoredModules>
+        <cache>
+            <types>
+                <config_api translate="label,description" module="api">
+                    <label>Web Services Configuration</label>
+                    <description>Web Services definition files (api.xml).</description>
+                    <tags>CONFIG_API</tags>
+                </config_api>
+            </types>
+        </cache>
+        <models>
+            <api>
+                <class>Mage_Api_Model</class>
+                <resourceModel>api_resource</resourceModel>
+            </api>
+            <api_resource>
+                <class>Mage_Api_Model_Resource</class>
+                <deprecatedNode>api_mysql4</deprecatedNode>
+                <entities>
+                    <assert>
+                        <table>api_assert</table>
+                    </assert>
+                    <role>
+                        <table>api_role</table>
+                    </role>
+                    <rule>
+                        <table>api_rule</table>
+                    </rule>
+                    <user>
+                        <table>api_user</table>
+                    </user>
+                    <session>
+                        <table>api_session</table>
+                    </session>
+                </entities>
+            </api_resource>
+        </models>
+        <resources>
+            <api_setup>
+                <setup>
+                    <module>Mage_Api</module>
+                </setup>
+            </api_setup>
+        </resources>
+        <request>
+            <direct_front_name>
+                <api/>
+            </direct_front_name>
+        </request>
+    </global>
+    <frontend>
+        <routers>
+            <api>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Api</module>
+                    <frontName>api</frontName>
+                </args>
+            </api>
+        </routers>
+        <translate>
+            <modules>
+                <Mage_Api>
+                    <files>
+                        <default>Mage_Api.csv</default>
+                    </files>
+                </Mage_Api>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Mage_Api>
+                    <files>
+                        <default>Mage_Api.csv</default>
+                    </files>
+                </Mage_Api>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <api>
+            <config>
+                <charset>UTF-8</charset>
+                <session_timeout>3600</session_timeout>
+                <compliance_wsi>0</compliance_wsi>
+                <wsdl_cache_enabled>0</wsdl_cache_enabled>
+            </config>
+        </api>
+    </default>
+</config>

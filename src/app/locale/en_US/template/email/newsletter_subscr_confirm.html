@@ -1,0 +1,31 @@
+<!--@subject Newsletter subscription confirmation @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"htmlescape var=$customer.name":"Customer Name",
+"var subscriber.getConfirmationLink()":"Subscriber Confirmation Url"}
+@-->
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>Thank you for subscribing.</h1>
+            <p>To begin receiving the newsletter, you must first confirm your subscription:</p>
+            <table cellspacing="0" cellpadding="0" class="action-button" >
+                <tr>
+                    <td>
+                        <a href="{{var subscriber.getConfirmationLink()}}"><span>Confirm Subscription</span></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Tag
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Mage_Tag>
+            <version>1.6.0.0</version>
+        </Mage_Tag>
+    </modules>
+    <global>
+        <models>
+            <tag>
+                <class>Mage_Tag_Model</class>
+                <resourceModel>tag_resource</resourceModel>
+            </tag>
+            <tag_customer>
+                <class>Mage_Tag_Model_Customer</class>
+                <!-- <resourceModel>tag_customer_mysql4</resourceModel> -->
+                <resourceModel>tag_customer_resource</resourceModel>
+            </tag_customer>
+            <tag_resource>
+                <class>Mage_Tag_Model_Resource</class>
+                <deprecatedNode>tag_mysql4</deprecatedNode>
+                <entities>
+                    <tag>
+                        <table>tag</table>
+                    </tag>
+                    <relation>
+                        <table>tag_relation</table>
+                    </relation>
+                    <summary>
+                        <table>tag_summary</table>
+                    </summary>
+                    <properties>
+                        <table>tag_properties</table>
+                    </properties>
+                </entities>
+            </tag_resource>
+            <tag_customer_resource>
+                <class>Mage_Tag_Model_Resource_Customer</class>
+            </tag_customer_resource>
+        </models>
+        <resources>
+            <tag_setup>
+                <setup>
+                    <module>Mage_Tag</module>
+                </setup>
+            </tag_setup>
+        </resources>
+        <blocks>
+            <tag>
+                <class>Mage_Tag_Block</class>
+            </tag>
+        </blocks>
+        <index>
+            <indexer>
+                <tag_summary>
+                    <model>tag/indexer_summary</model>
+                </tag_summary>
+            </indexer>
+        </index>
+    </global>
+    <frontend>
+        <routers>
+            <tag>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Tag</module>
+                    <frontName>tag</frontName>
+                </args>
+            </tag>
+        </routers>
+        <translate>
+            <modules>
+                <Mage_Tag>
+                    <files>
+                        <default>Mage_Tag.csv</default>
+                    </files>
+                </Mage_Tag>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <tag module="Mage_Tag">
+                    <file>tag.xml</file>
+                </tag>
+            </updates>
+        </layout>
+        <secure_url>
+            <tag_customer>/tag/customer/</tag_customer>
+        </secure_url>
+    </frontend>
+    <adminhtml>
+        <events>
+            <catalog_controller_product_save_visibility_changed>
+                <observers>
+                    <tag>
+                        <type>model</type>
+                        <class>tag/tag</class>
+                        <method>productEventAggregate</method>
+                    </tag>
+                </observers>
+            </catalog_controller_product_save_visibility_changed>
+            <catalog_controller_product_delete>
+                <observers>
+                    <tag>
+                        <type>model</type>
+                        <class>tag/tag</class>
+                        <method>productEventAggregate</method>
+                    </tag>
+                </observers>
+            </catalog_controller_product_delete>
+            <catalog_product_delete_before>
+                <observers>
+                    <tag>
+                        <type>model</type>
+                        <class>tag/tag</class>
+                        <method>productDeleteEventAction</method>
+                    </tag>
+                </observers>
+            </catalog_product_delete_before>
+        </events>
+        <translate>
+            <modules>
+                <Mage_Tag>
+                    <files>
+                        <default>Mage_Tag.csv</default>
+                    </files>
+                </Mage_Tag>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <tag>
+                    <file>tag.xml</file>
+                </tag>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
