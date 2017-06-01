@@ -124,7 +124,7 @@ Product.OptionsPrice.prototype = {
             var excl;
             var incl;
             var tax;
-            if ($(pair.value)) {
+            if ($(pair.value+this.duplicateIdSuffix)) {
                 if (pair.value == 'old-price-'+this.productId && this.productOldPrice != this.productPrice) {
                     _productPrice = this.productOldPrice;
                     _plusDisposition = this.oldPlusDisposition;
@@ -212,13 +212,13 @@ Product.OptionsPrice.prototype = {
                     formattedPrice = '';
                 }
 
-                if ($(pair.value).select('.price')[0]) {
-                    $(pair.value).select('.price')[0].innerHTML = formattedPrice;
+                if ($(pair.value+this.duplicateIdSuffix).select('.price')[0]) {
+                    $(pair.value+this.duplicateIdSuffix).select('.price')[0].innerHTML = formattedPrice;
                     if ($(pair.value+this.duplicateIdSuffix) && $(pair.value+this.duplicateIdSuffix).select('.price')[0]) {
                         $(pair.value+this.duplicateIdSuffix).select('.price')[0].innerHTML = formattedPrice;
                     }
                 } else {
-                    $(pair.value).innerHTML = formattedPrice;
+                    $(pair.value+this.duplicateIdSuffix).innerHTML = formattedPrice;
                     if ($(pair.value+this.duplicateIdSuffix)) {
                         $(pair.value+this.duplicateIdSuffix).innerHTML = formattedPrice;
                     }
