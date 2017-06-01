@@ -423,6 +423,10 @@ class Mage_Customer_Model_Address_Abstract extends Mage_Core_Model_Abstract
         ) {
             $this->addError(Mage::helper('customer')->__('Please enter the state/province.'));
         }
+
+        if (!in_array($this->getCountry(), explode(',', Mage::getStoreConfig('general/country/allow')))) {
+            $this->addError(Mage::helper('customer')->__('Please select a valid country.'));
+        }
     }
 
     /**
