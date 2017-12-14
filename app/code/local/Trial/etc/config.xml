@@ -1,0 +1,28 @@
+<config>
+    <modules>
+        <Trial>
+            <version>0.1.0</version>
+        </Trial>
+    </modules>
+
+    
+
+
+<frontend>
+        <routers>
+                <trial>
+                    <use>standard</use>
+                    <args>
+                        <module>Trial</module>                         
+                        <frontName>trial</frontName>
+                    </args>
+                </trial>
+        </routers>
+        
+    </frontend>
+   
+
+
+
+
+</config>
