@@ -1,0 +1,41 @@
+<config>
+    <modules>
+        <Trial>
+            <version>0.1.0</version>
+        </Trial>
+    </modules>
+
+    
+
+
+<frontend>
+        <routers>
+                <trial>
+                    <use>standard</use>
+                    <args>
+                        <module>Trial</module>                         
+                        <frontName>trial</frontName>
+                    </args>
+                </trial>
+        </routers>
+        
+       <layout>
+           <updates>
+                <trial>
+                     <file>trial.xml</file>
+                 </trial>
+            </updates>
+        </layout>
+ </frontend>
+   <global>
+        <blocks>
+            <trial>
+                <class>Trial_Block</class>
+            </trial>
+        </blocks>
+    </global>
+
+
+
+
+</config>
