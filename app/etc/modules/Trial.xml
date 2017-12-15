@@ -1,0 +1,8 @@
+<config>
+<modules>
+<Trial>
+<active>true</active>
+<codePool>local</codePool>
+</Trial>
+</modules>
+</config>
