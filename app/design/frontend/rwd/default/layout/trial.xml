@@ -1,8 +1,13 @@
 <layout>
     <trial_index_advertising>
-        
         <reference name="content">
             <block type="trial/advertising" name="myblock.advertising" template="trial/advertising.phtml" />
         </reference>
     </trial_index_advertising>
+    
+    <catalog_product_view>
+        <reference name="content">
+            <block type="trial/advertising" name="my.block" template="trial/advertising.phtml" />
+        </reference>
+    </catalog_product_view>
 </layout>
