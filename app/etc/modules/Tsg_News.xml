@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Tsg_News>
+            <codePool>local</codePool>
+            <active>true</active>
+        </Tsg_News>
+    </modules>
+</config>
