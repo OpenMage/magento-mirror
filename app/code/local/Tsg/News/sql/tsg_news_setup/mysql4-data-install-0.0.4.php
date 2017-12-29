@@ -4,7 +4,7 @@ $news = array();
 for ($i = 1; $i < 6; $i++) {
     $news[] = array(
         'news_title' => 'Title ' . $i,
-        'news_conetnt' => 'Conetnt ' . $i,
+        'news_content' => 'Conetnt ' . $i,
         'news_priority' => $i,
         'created_at' => strftime('%Y-%m-%d %H:%M:%S', time()),
     );
