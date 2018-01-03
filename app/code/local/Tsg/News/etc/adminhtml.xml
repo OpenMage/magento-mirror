@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <tsg_news module="tsg_news">
+            <sort_order>66</sort_order>
+            <title>News</title>
+            <children>
+                <news module="tsg_news">
+                    <title>Manage News</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/list</action>
+                </news>
+            </children>
+        </tsg_news>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tsg_news translate="title" module="tsg_news">
+
+                                    </tsg_news>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

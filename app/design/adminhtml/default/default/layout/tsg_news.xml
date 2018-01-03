@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_list_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>tsg_news/list</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="tsg_news/adminhtml_news_list" name="admin.news"/>
+        </reference>
+    </adminhtml_list_index>
+    <adminhtml_list_grid>
+        <remove block="root"/>
+        <block type="tsg_news/adminhtml_news_list_grid" name="admin.list.grid" output="toHtml"/>
+    </adminhtml_list_grid>
+    <adminhtml_list_new>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>tsg_news/list</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="tsg_news/adminhtml_news_list_edit"/>
+        </reference>
+    </adminhtml_list_new>
+    <adminhtml_list_edit>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>tsg_news/list</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="tsg_news/adminhtml_news_list_edit"/>
+        </reference>
+    </adminhtml_list_edit>
+</layout>
