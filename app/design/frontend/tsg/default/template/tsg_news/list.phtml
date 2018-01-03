@@ -1,0 +1,25 @@
+<?php
+$collection = $this->getCollection(); ?>
+<?php echo $this->getToolbarHtml(); ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('News List') ?></h1>
+    </div>
+<?php
+if (count($collection->getItems()) > 0) {
+    foreach ($collection as $news) { ?>
+        <div class="clear-fix">
+            <h3 align="center"><?php echo $news->getNewsTitle() ?></h3>
+            <?php
+            if ($news->getNewsImage() !== null) {
+                $imageLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . DS . $news->getNewsImage(); ?>
+                <span class="news-img"><img src= <?php echo $imageLink; ?> width="120px"></span>
+            <?php } ?>
+            <span><?php echo $this->renderNewsContent($news->getNewsContent(), $news->getNewsId()) ?></span>
+        </div>
+    <?php } ?>
+    <?php echo $this->getToolbarHtml();
+} else {
+    echo "There is no news";
+}
+
+?>

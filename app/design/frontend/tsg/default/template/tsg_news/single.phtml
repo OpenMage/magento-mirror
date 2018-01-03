@@ -1,0 +1,16 @@
+<?php
+$newsData = $this->getCollection();
+if ($newsData !== null) {
+    ?>
+    <div class="clear-fix">
+        <h3 align="center"><?php echo $newsData->getNewsTitle() ?></h3>
+        <?php
+        if ($newsData->getNewsImage() !== null) {
+            $imageLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . DS . $newsData->getNewsImage(); ?>
+            <span class="news-img"><img src= <?php echo $imageLink; ?> width="120px"></span>
+        <?php } ?>
+        <span><?php echo $newsData->getNewsContent() ?></span>
+    </div>
+<?php } else {
+    echo "There is no news";
+} ?>

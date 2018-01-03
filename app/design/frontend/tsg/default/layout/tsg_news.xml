@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout>
+    <tsg_news_index_newslist>
+        <reference name="content">
+            <block type="tsg_news/news_sort" template="tsg_news/sort.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="tsg_news/news_list" template="tsg_news/list.phtml"/>
+        </reference>
+    </tsg_news_index_newslist>
+    <tsg_news_index_read>
+        <reference name="content">
+            <block type="tsg_news/news_single" template="tsg_news/single.phtml"/>
+        </reference>
+    </tsg_news_index_read>
+    <catalog_product_view>
+        <reference name="content">
+            <block type="tsg_news/news_product" template="tsg_news/product.phtml"/>
+        </reference>
+    </catalog_product_view>
+</layout>
