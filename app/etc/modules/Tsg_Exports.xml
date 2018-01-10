@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Tsg_Exports>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Tsg_Exports>
+    </modules>
+
+</config>
