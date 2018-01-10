@@ -30,5 +30,4 @@ $table = $installer->getConnection()
     ->addColumn('qty_filter', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(),
         'Minimun qty in stock');
 $installer->getConnection()->createTable($table);
-
 $installer->endSetup();
