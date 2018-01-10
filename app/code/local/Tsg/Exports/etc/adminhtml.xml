@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <exports translate="title" module="tsg_exports">
+            <title>Экспорты</title>
+            <sort_order>55</sort_order>
+            <children>
+                <export translate="title" module="tsg_exports">
+                    <title>Управление Экспортами</title>
+                    <action>adminhtml/exports</action>
+                    <sort_order>0</sort_order>
+                </export>
+            </children>
+        </exports>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <exports translate="title" module="tsg_exports">
+                        <title>Экспорты</title>
+                        <sort_order>55</sort_order>
+                        <children>
+                            <export translate="title" module="tsg_exports">
+                                <title>Управление Экспортами</title>
+                                <sort_order>0</sort_order>
+                            </export>
+                        </children>
+                    </exports>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

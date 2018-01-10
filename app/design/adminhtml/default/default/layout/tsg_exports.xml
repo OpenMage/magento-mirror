@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_exports_index>
+        <reference name="content">
+            <block type="tsg_exports/adminhtml_exports" name="tsg_exports_exports"/>
+        </reference>
+    </adminhtml_exports_index>
+    <adminhtml_exports_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <value>1</value>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="tsg_exports/adminhtml_exports_edit_tabs" name="exports_edit_tabs">
+                <block type="tsg_exports/adminhtml_exports_edit_tab_general" name="exports_edit_tab_general"/>
+                <block type="tsg_exports/adminhtml_exports_edit_tab_filters" name="exports_edit_tab_filters"/>
+                <action method="addTab">
+                    <name>general_section</name>
+                    <block>exports_edit_tab_general</block>
+                </action>
+                <action method="addTab">
+                    <name>filters_section</name>
+                    <block>exports_edit_tab_filters</block>
+                </action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="tsg_exports/adminhtml_exports_edit" name="tsg_exports_exports_edit"/>
+        </reference>
+    </adminhtml_exports_edit>
+    <adminhtml_exports_categories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="tsg_exports/adminhtml_exports_edit_tab_categories" name="exports.edit.tab.categories"/>
+        </block>
+    </adminhtml_exports_categories>
+</layout>
