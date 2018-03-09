@@ -63,7 +63,29 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
     <?php $_weeeTaxAmount = $_store->roundPrice($_store->convertPrice($_weeeTaxAmount)); ?>
     <?php $_weeeTaxAmountInclTaxes = $_store->roundPrice($_store->convertPrice($_weeeTaxAmountInclTaxes)); ?>
 
-    <div class="price-box">
+
+<!-- Ahyeon : Displaying Login to See Price Start-->
+<?php
+    if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+    echo '<span class="login_for_price"><strong>Login to See Price</strong></span><br>';
+    return;
+}
+?>
+<!-- Login to See Price End-->
+
+<!-- Aheyon : Sign in to See Price Start -->
+
+<?php
+    if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+    <a href=" your register page url" >echo '<span class="signin_for_price"><strong>Login to See Price</strong></span><br></a>';
+    return;
+}
+?>
+<!-- Sign in to See Price End-->
+
+
+<!-- ahyeon : price box start-->
+<div class="price-box">
     <?php $_convertedPrice = $_store->roundPrice($_store->convertPrice($_product->getPrice())); ?>
     <?php $_price = $_taxHelper->getPrice($_product, $_convertedPrice); ?>
     <?php $_regularPrice = $_taxHelper->getPrice($_product, $_convertedPrice, $_simplePricesTax); ?>
@@ -461,3 +483,5 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
         </div>
     <?php endif; /* if ($this->getDisplayMinimalPrice() && $_minimalPrice): */ ?>
 <?php endif; /* if (!$_product->isGrouped()): */ ?>
+
+<!-- ahyeon : price box end -->
