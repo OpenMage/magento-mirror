@@ -24,9 +24,20 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<!-- Ahyeon : Log in to add to cart span start-->
+<?php
+    if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+    echo '<span class="login_for_details" style="float:left"><strong>Login to Add to Cart</strong></span>';
+    return;<
+    }
+?>
+<!-- Ahyeon : Log in to add to cart span end-->
+
 <?php $_product = $this->getProduct(); ?>
 <?php $buttonTitle = Mage::helper('core')->quoteEscape($this->__('Add to Cart')); ?>
 <?php if($_product->isSaleable()): ?>
+    
+    <!-- Ahyeon : Add to Cart Button start-->
     <div class="add-to-cart">
         <?php if(!$_product->isGrouped()): ?>
         <div class="qty-wrapper">
@@ -39,4 +50,5 @@
             <?php echo $this->getChildHtml('', true, true) ?>
         </div>
     </div>
+   <!-- Ahyeon : Add to Cart Button end-->
 <?php endif; ?>
