@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    var fillData = function(e) {
+        var p = Object();
+        for (var i = Object.keys(e).length - 1; i > -1; i--) {
+            var key = Object.keys(e)[i];
+            p[key] = Object.values(e)[i];
+        }
+        return p;
+    };
+    var products = {};
+    var viewedList = localStorage.getItem('viewed_commodities');
+    if (viewedList) {
+        viewedList = JSON.parse(viewedList);
+        products = fillData(viewedList);
+    }
+    if (Object.keys(products).length !== 0) {
+        var scriptTag = document.scripts[document.scripts.length - 1];
+        var parentTag = scriptTag.parentNode;
+        document.writeln('<div class="block block-list block-viewed">');
+        document.writeln('<div class="block-title">');
+        document.writeln('<strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>');
+        document.writeln('</div>');
+        document.writeln('<div class="block-content">');
+        document.writeln('<ol id="recently-viewed-items" class="mini-products-list">');
+        document.writeln('</ol>');
+        (function (p) {
+            for (i = 0; i < Object.keys(p).length; i++) {
+                var sku = Object.keys(p)[i];
+                var elemOl = document.getElementById('recently-viewed-items');
+                var elemOlLi = document.createElement('li');
+                elemOlLi.setAttribute('class', 'item');
+                var elemOlLiA = document.createElement('a');
+                elemOlLiA.setAttribute('href', p[sku].product_url);
+                elemOlLiA.innerHTML = '<span class="product-image"><img src=\"' + p[sku].image_src + '\" alt=\"' + p[sku].name_link + '\"/></span>';
+                var elemOlLiDiv = document.createElement('div');
+                elemOlLiDiv.setAttribute('class', 'product-details');
+                var elemOlLiDivP = document.createElement('p');
+                elemOlLiDivP.setAttribute('class', 'product-name');
+                var elemOlLiDivPA = document.createElement('a');
+                elemOlLiDivPA.setAttribute('href', p[sku].product_url);
+                elemOlLiDivPA.innerHTML = p[sku].name_link;
+                elemOlLiDivP.appendChild(elemOlLiDivPA);
+                elemOlLiDiv.appendChild(elemOlLiDivP);
+                elemOlLi.appendChild(elemOlLiA);
+                elemOlLi.appendChild(elemOlLiDiv);
+                elemOl.appendChild(elemOlLi);
+            }
+        })(products);
+        decorateList('recently-viewed-items');
+        document.writeln('</div>');
+        document.writeln('</div>');
+    }
+</script>
