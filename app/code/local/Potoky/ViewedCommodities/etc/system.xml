@@ -1,0 +1,59 @@
+<config>
+    <sections>
+        <catalog translate="label" module="viewedcommodities">
+            <label>Catalog</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>40</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <lifetime_vc translate="label">
+                    <label>JS Block</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <allow_jsblock>
+                            <label>Allow Viewed Products Block to be generated from the JS local storage</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_jsblock>
+                        <viewedcommodities_lifetime translate="label">
+                            <label>Enter the lifetime for JS Block (sec.):</label>
+                            <comment>Excepted values in range from 120 to 7776000:</comment>
+                            <backend_model>viewedcommodities/lifetime</backend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <allow_jsblock>1</allow_jsblock>
+                            </depends>
+                        </viewedcommodities_lifetime>
+                        <ajax_async translate="label">
+                            <label>Allow sending asynchronous request when trying to get data from the server</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <allow_jsblock>1</allow_jsblock>
+                            </depends>
+                        </ajax_async>
+                    </fields>
+                </lifetime_vc>
+            </groups>
+        </catalog>
+    </sections>
+</config>
