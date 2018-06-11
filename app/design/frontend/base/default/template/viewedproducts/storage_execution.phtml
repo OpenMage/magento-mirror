@@ -1,0 +1,44 @@
+<?php $async = Mage::getStoreConfig('catalog/js_viewed_products/ajax_async');
+      $lifetime = Mage::helper('viewedproducts/lifetime')->getLifetime();
+?>
+
+<script>
+    function forMostCases(message) {
+        if (message !== undefined) {
+            console.log(message);
+        }
+        ajaxGotViewed(<?= $async ?>, <?= $lifetime ?>);
+    }
+
+    (function (cookies) {
+        var cookiesArr = cookies.split(';');
+        for (var i = 0; i < cookiesArr.length; i++) {
+            if (cookiesArr[i].indexOf('viewed_products') < 0) {
+                continue;
+            }
+            var value = cookiesArr[i].substr(cookiesArr[i].indexOf('=') + 1).trim();
+            switch (value) {
+                case 'reset':
+                    forMostCases();
+                    alert('reset');
+                    return;
+                case 'clear':
+                    renderStorage();
+                    alert('clear');
+                    return;
+                case 'engage':
+                    forMostCases('JS block forming has not been engaged. The data has been puled out from the server. ' + Date.now());
+                    alert('engage');
+                    return;
+                case 'fail':
+                    forMostCases( 'AJAX call has been unsuccessful. The data has been puled out from the server. ' + Date.now());
+                    alert('fail');
+                    return;
+                case 'add':
+                    forMostCases('Saving info about just viewed product to the localStorage has been unsuccessful. ' + Date.now());
+                    alert('add');
+                    return;
+             }
+        }
+    }(decodeURIComponent(document.cookie)));
+</script>
