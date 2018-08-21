@@ -46,7 +46,7 @@ class Mage_Eav_Model_Attribute_Data_Date extends Mage_Eav_Model_Attribute_Data_A
         if ($value !== '') {
             return $this->_applyInputFilter($value);
         }
-        return $this->_applyInputFilter($value);
+        return $value;
     }
 
     /**
