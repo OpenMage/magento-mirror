@@ -82,6 +82,15 @@ class Mage_SalesRule_Model_Quote_Discount extends Mage_Sales_Model_Quote_Address
             if ($item->getNoDiscount()) {
                 $item->setDiscountAmount(0);
                 $item->setBaseDiscountAmount(0);
+                /**
+                * when admin set no discount apply for parent item, all child items shouldn't have discount also.
+                */
+                if($item->getHasChildren()) { 
+					 foreach ($item->getChildren() as $child) {
+						  $child->setDiscountAmount(0);
+						  $child->setBaseDiscountAmount(0);
+					 }
+				}
             }
             else {
                 /**
