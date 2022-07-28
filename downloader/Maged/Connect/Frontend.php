@@ -118,7 +118,7 @@ class Maged_Connect_Frontend extends Mage_Connect_Frontend
     public function confirm($string)
     {
         $confirmString = htmlentities($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-        $formId = htmlspecialchars($_POST['form_id'], ENT_COMPAT | ENT_HTML401, 'UTF-8');
+        $formId = htmlspecialchars($_POST['form_id'], ENT_QUOTES | ENT_HTML401, 'UTF-8');
 
         echo <<<SCRIPT
         <script type="text/javascript">
